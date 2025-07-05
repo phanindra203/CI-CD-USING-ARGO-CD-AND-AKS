@@ -1,0 +1,54 @@
+
+DevOps Troubleshooting Commands - AKS, ACR, Argo CD
+===================================================
+
+🐳 Check if Image Exists in ACR
+-------------------------------
+az acr repository show-tags --name phanindraazurecicd --repository votingapp
+
+🧑‍💻 Set Correct Azure Subscription
+----------------------------------
+# 1. List all subscriptions
+az account list -o table
+
+# 2. Set the correct subscription (e.g., Pay-As-You-Go)
+az account set --subscription "Pay-As-You-Go"
+
+# 3. Verify active subscription
+az account show --query "{Name:name, ID:id, IsDefault:isDefault}" -o table
+
+🧼 Clear Default Resource Group
+-------------------------------
+az configure --defaults group=
+
+☸️ List All AKS Clusters in Current Subscription
+------------------------------------------------
+az aks list --query '[].{name:name, rg:resourceGroup}' -o table
+
+🔒 Attach ACR to AKS (Fix ErrImagePull)
+---------------------------------------
+az aks update \
+  --name azuredevops \
+  --resource-group azurecicd \
+  --attach-acr phanindraazurecicd
+
+📦 Describe Pod to Debug Image Issues
+------------------------------------
+kubectl describe pod <pod-name>
+
+🔁 Sync Argo CD App
+-------------------
+# From Argo CD UI: Click "Sync"
+# Or via CLI:
+argocd app sync voting-app
+
+🔍 Optional: Add imagePullSecrets in Deployment YAML
+----------------------------------------------------
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: <secret-name>
+
+✅ Done! Your AKS + ACR + Argo CD pipeline is now connected and working.
+
