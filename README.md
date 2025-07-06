@@ -1,7 +1,6 @@
 # CI-CD-USING-ARGO-CD-AND-AKS
 I built and deployed a voting application using Kubernetes (K8s) clusters and Argo CD for continuous deployment. The application, featuring a "Ford vs Ferrari" voting interface, leverages a container registry to manage and push images. I successfully addressed challenges such as resolving an ImagePullBackOff error in Argo CD by configuring image pull secrets, ensuring the pod transitioned from an unhealthy to a healthy state. This project honed my skills in K8s cluster management, container registry operations, and Argo CD workflows. Check out the screenshots and GitHub repo for more details! [Link to GitHub]
 
-[Include relevant screenshots here: voting app UI, Argo CD dashboard, Kubernetes pod status, etc.]
 
 GitHub Repository Description
 This repository contains the source code and configuration files for a voting application built and deployed using Kubernetes (K8s) clusters and Argo CD. The application allows users to vote between Ford and Ferrari, showcasing a simple yet effective use case for containerized deployments.
